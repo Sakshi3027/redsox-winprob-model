@@ -2,8 +2,14 @@ venv/
 __pycache__/
 *.pyc
 .DS_Store
-data/
-*.parquet
+data/*
+!data/gold_replay_timeseries.parquet
+!data/gold_leaderboard.parquet
+!data/gold_wpa_leaderboard.parquet
+!data/gold_clutch_leaderboard.parquet
+!data/gold_leverage_table.parquet
+!data/gold_baseline_comparison.parquet
+!data/player_names.parquet
 .env
 node_modules/
 .next/
