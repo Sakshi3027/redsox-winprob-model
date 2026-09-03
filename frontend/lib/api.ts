@@ -28,6 +28,7 @@ export interface GameReplay {
 
 export interface WpaEntry {
   player_id: number;
+  full_name: string;
   season: number;
   total_wpa: number;
   plate_appearances: number;

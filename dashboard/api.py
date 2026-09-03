@@ -18,13 +18,20 @@ app.add_middleware(
 
 DATA_DIR = Path("data")
 
+# Load once at startup, not per-request
 replay_df = pd.read_parquet(DATA_DIR / "gold_replay_timeseries.parquet")
 leaderboard_df = pd.read_parquet(DATA_DIR / "gold_leaderboard.parquet")
 wpa_df = pd.read_parquet(DATA_DIR / "gold_wpa_leaderboard.parquet")
 clutch_df = pd.read_parquet(DATA_DIR / "gold_clutch_leaderboard.parquet")
 leverage_table_df = pd.read_parquet(DATA_DIR / "gold_leverage_table.parquet")
 baseline_df = pd.read_parquet(DATA_DIR / "gold_baseline_comparison.parquet")
+names_df = pd.read_parquet(DATA_DIR / "player_names.parquet")
 
+wpa_df = wpa_df.merge(names_df, on="player_id", how="left")
+wpa_df["full_name"] = wpa_df["full_name"].fillna("Unknown Player")
+
+clutch_df = clutch_df.merge(names_df, on="player_id", how="left")
+clutch_df["full_name"] = clutch_df["full_name"].fillna("Unknown Player")
 
 @app.get("/")
 def root():
