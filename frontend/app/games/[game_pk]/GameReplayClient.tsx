@@ -61,7 +61,7 @@ export default function GameReplayClient({ replay }: { replay: GameReplay }) {
               <Tooltip
                 contentStyle={{ background: "#171717", border: "1px solid #333" }}
                 labelFormatter={() => ""}
-                formatter={(v: number) => [`${v.toFixed(1)}%`, `${replay.home_team} win prob`]}
+                formatter={(v) => [`${Number(v).toFixed(1)}%`, `${replay.home_team} win prob`]}
               />
               <Line
                 type="monotone"
